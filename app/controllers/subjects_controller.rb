@@ -1,20 +1,26 @@
 class SubjectsController < ApplicationController
   before_action :find_subj, only: [:show, :destroy, :edit, :update]
+  before_action :authenticate_user!, except: [:index , :show]
 
   def index
     @subjects = Subject.all
   end
 
   def new
-    @subject = Subject.new
+    @subject = current_user.subjects.build
+    @subjectss = Subject.new
   end
 
   def create
-    @subject = Subject.new(subj_params)
+    @subject = current_user.subjects.build(subj_params)
 
     if @subject.save
       redirect_to subject_index_path
     end
+  end
+
+  def edit
+    
   end
 
   def destroy
@@ -23,6 +29,16 @@ class SubjectsController < ApplicationController
       redirect_to subject_index_path
     end
   end
+
+  def update
+
+    if @subject.update(subj_params)
+      redirect_to subject_index_path
+    end
+    
+  end
+
+  
 
 
 

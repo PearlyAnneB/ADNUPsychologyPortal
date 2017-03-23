@@ -17,10 +17,12 @@ class ResearchesController < ApplicationController
   def create
 
       @research = current_user.researches.build(research_params)
+      @comment.user_id = current_user.id
 
       if @research.save
         redirect_to research_index_path
       end
+
   end
 
   def edit
@@ -42,7 +44,7 @@ class ResearchesController < ApplicationController
   private
 
   def research_params
-    params.require(:research).permit(:title, :author, :description, :callNo, :year, :research_img)
+    params.require(:research).permit(:title, :author, :contributor, :description, :callNo, :year, :research_img)
   end
 
   def find_research

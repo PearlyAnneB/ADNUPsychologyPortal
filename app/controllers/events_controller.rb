@@ -1,7 +1,11 @@
 class EventsController < ApplicationController
     before_action :find_event, only: [:show, :edit, :update, :destroy]
-
+before_action :authenticate_user!, except: [:index , :show, :eventlist ]
   def index
+    @events = Event.all
+  end
+
+  def eventlist
     @events = Event.all
   end
 
@@ -12,6 +16,7 @@ class EventsController < ApplicationController
   def show
 
   end
+
 
   def create
     @event = current_user.events.build(event_params)
@@ -38,6 +43,17 @@ class EventsController < ApplicationController
 
   end
 
+    def search
+    q = params[:q]
+    @search = Event.search(event_name_cont: q).result
+    @researches = Research.search(title_cont: q).result
+    @professors = Professor.search(name_cont: q).result
+    @subjects = Subject.search(subject_title_cont: q).result
+    @key = q
+    end
+
+
+
   private
 
   def event_params
@@ -47,5 +63,6 @@ class EventsController < ApplicationController
   def find_event
     @event = Event.find(params[:id])
   end
+
 
 end
