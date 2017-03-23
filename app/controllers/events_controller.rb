@@ -43,6 +43,17 @@ class EventsController < ApplicationController
 
   end
 
+    def search
+    q = params[:q]
+    @search = Event.search(event_name_cont: q).result
+    @researches = Research.search(title_cont: q).result
+    @professors = Professor.search(name_cont: q).result
+    @subjects = Subject.search(subject_title_cont: q).result
+    @key = q
+    end
+
+
+
   private
 
   def event_params
@@ -52,5 +63,6 @@ class EventsController < ApplicationController
   def find_event
     @event = Event.find(params[:id])
   end
+
 
 end
