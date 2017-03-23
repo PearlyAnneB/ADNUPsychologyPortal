@@ -17,10 +17,12 @@ class ResearchesController < ApplicationController
   def create
 
       @research = current_user.researches.build(research_params)
+      @comment.user_id = current_user.id
 
       if @research.save
         redirect_to research_index_path
       end
+
   end
 
   def edit

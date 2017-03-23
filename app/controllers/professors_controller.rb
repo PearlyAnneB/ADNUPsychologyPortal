@@ -1,5 +1,6 @@
 class ProfessorsController < ApplicationController
   before_action :find_professor, only: [ :show, :update, :destroy, :edit ]
+  before_action :authenticate_user!, except: [:index , :show]
 
   def index
     @professors = Professor.all

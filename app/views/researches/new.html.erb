@@ -1,4 +1,5 @@
-<h1> Form </h1>
+<div class="tocenter">
+<h1> Insert a Research </h1>
 
 <%= form_for(:research) do |f| %>
   <%= f.label :title %><br>
@@ -19,13 +20,19 @@
   <%= f.label :"Year published" %><br>
   <%= f.text_field :year %>
   <br>
+
   <%= f.label :Image %>
-  <%= f.file_field :research_img %>
+  <%= f.file_field :research_img, class: "tocenter" %>
   <br>
 
+
+
   <br>
 
-  <%= f.submit "Insert a Research" %><br><br>
-  <%= link_to "Back", research_index_path %>
+</div>
 
+
+ 
+ <a class="btn btn-default" href = "/research/index" role = "button"> Back </a>
+  <%= f.submit "Insert a Research",  class: "btn btn-default" %>
   <% end %>

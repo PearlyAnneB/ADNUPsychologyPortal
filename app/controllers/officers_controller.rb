@@ -1,7 +1,7 @@
 class OfficersController < ApplicationController
 
   before_action :find_officer, only: [:show, :edit, :update, :destroy]
-
+before_action :authenticate_user!, except: [:index , :show]
 
   def index
     @officers = Officer.all

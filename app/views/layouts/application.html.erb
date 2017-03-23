@@ -12,6 +12,7 @@
 
 
   <body>
+       
     <div class = "banner">
      <%= image_tag("adnu_logo.png", size: "30x30", alt: "adnu logo") %>
      Ateneo De Naga University
@@ -30,16 +31,15 @@
     </div>
 
     <div class = "header" >
-     <%= image_tag("psych_logo", size: "100x100", alt: "adnu logo") %>
+     <%= image_tag("psych_logo", size: "100x100", alt: "we") %>
         DEPARTMENT OF PSYCHOLOGY 
 
           <div class = "search-field" >
-            <%= form_tag "/search_items/" do %>
-              <input type="search_string" class="form-control" placeholder="Search for..." >
-            <% end %>
-
-                
+            <%= form_tag('/event/search', method: :get) do %>
+              <input name = "q" class="form-control" placeholder="Search for..." >
+            <% end %>       
           </div>
+
 
       
     </div>
@@ -67,13 +67,12 @@
 
 
 
+
  <div class = "container" >
  <%= yield %>
  </div>
 
- <div class = "footer" >
-          Footer
- </div>
+
 
  </body>
   

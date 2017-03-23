@@ -1,5 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :find_subj, only: [:show, :destroy, :edit, :update]
+  before_action :authenticate_user!, except: [:index , :show]
 
   def index
     @subjects = Subject.all
@@ -7,6 +8,7 @@ class SubjectsController < ApplicationController
 
   def new
     @subject = current_user.subjects.build
+    @subjectss = Subject.new
   end
 
   def create
