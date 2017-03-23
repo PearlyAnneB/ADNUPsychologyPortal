@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   post 'about/:id/edit' => 'abouts#update'
 
   #routes for event
+  get 'event/search' => 'events#search'
   get 'event/eventlist' => 'events#eventlist'
   get 'event/index' => 'events#index'
   get 'event/new' => 'events#new'
